@@ -4,6 +4,8 @@ import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { AmbientLight } from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
 
 const scene = new THREE.Scene();
 
@@ -46,7 +48,7 @@ scene.add(pointLight, ambientLight);
 
 function addStar() {
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const material = new THREE.MeshStandardMaterial({ color: '#000000' });
     const star = new THREE.Mesh(geometry, material);
 
     const [x, y, z] = Array(3)
@@ -74,33 +76,110 @@ scene.add(jeff);
 
 // Moon
 
-const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+// const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: moonTexture,
-    normalMap: normalTexture,
-  })
+// const moon = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: moonTexture,
+//     normalMap: normalTexture,
+//   })
+// );
+
+// scene.add(moon);
+
+// moon.position.z = 30;
+// moon.position.setX(-10);
+
+
+// const loader = new GLTFLoader();
+// loader.load(
+//   'adamHead/adamHead.gltf',
+//   (gltf) => {
+//     scene.add(gltf.scene);
+//   },
+//   (progress) => {
+//     console.log(`Loading: ${progress.loaded / progress.total * 100}%`);
+//   },
+//   (error) => {
+//     console.error(error);
+//   }
+// );
+
+
+const loader = new GLTFLoader();
+loader.load(
+  'adamHead/adamHead.gltf',
+  (gltf) => {
+    const model = gltf.scene;
+    scene.add(model);
+
+    // Perform any necessary operations on the model
+    model.position.set(0, 0, 0);
+    model.scale.set(1, 1, 1);
+
+    // Animation loop
+    const animate = function () {
+      requestAnimationFrame(animate);
+
+      // Rotate the model
+      model.rotation.y += 0.01;
+      model.position.x = -25;
+      model.position.z = 30;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  },
+  (xhr) => {
+    console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+  },
+  (error) => {
+    console.error(error);
+  }
 );
 
-scene.add(moon);
+// const loader = new GLTFLoader();
+// let model;
 
-moon.position.z = 30;
-moon.position.setX(-10);
+// loader.load(
+//   'adamHead.gltf',
+//   (gltf) => {
+//     model = gltf.scene;
+//     scene.add(model);
+//   },
+//   (progress) => {
+//     console.log(`Loading: ${progress.loaded / progress.total * 100}%`);
+//   },
+//   (error) => {
+//     console.error(error);
+//   }
+// );
+
+
+
+//  computer.position.set(0, 0, 0);
+//  computer.scale.set(1, 1, 1);
 
 jeff.position.z = -5;
 jeff.position.x = 2;
 
 
+// function render() {
+//   renderer.render(scene, camera);
+//   requestAnimationFrame(render);
+// }
+// render()
+
 // Scroll Animation
 
 function moveCamera() {
     const t = document.body.getBoundingClientRect().top;
-    moon.rotation.x += 0.05;
-    moon.rotation.y += 0.075;
-    moon.rotation.z += 0.05;
+    // moon.rotation.x += 0.05;
+    // moon.rotation.y += 0.075;
+    // moon.rotation.z += 0.05;
   
     jeff.rotation.y += 0.01;
     jeff.rotation.z += 0.01;
@@ -114,14 +193,23 @@ function moveCamera() {
   moveCamera();
 
 
+
+
+
+
+
+
+  
 function animate() {
 
     requestAnimationFrame(animate);
-
+    
     torus.rotation.x += 0.01;
     torus.rotation.y += 0.005;
     torus.rotation.z += 0.01;
 
+    // Rotate the model
+    // model.rotation.y += 0.01;
 
 
     //controls.update();
