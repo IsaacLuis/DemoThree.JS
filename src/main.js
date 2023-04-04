@@ -5,192 +5,192 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { AmbientLight } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { RGBELoader } from '../RGBELoader';
+
+// const scene = new THREE.Scene();
+
+// const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
 
-const scene = new THREE.Scene();
-
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-
-
-const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#bg'),
-});
+// const renderer = new THREE.WebGLRenderer({
+//     canvas: document.querySelector('#bg'),
+// });
 
 
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
-camera.position.setX(-3);
+// renderer.setPixelRatio(window.devicePixelRatio);
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// camera.position.setZ(30);
+// camera.position.setX(-3);
 
-renderer.render(scene, camera);
+// renderer.render(scene, camera);
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
-const torus = new THREE.Mesh(geometry, material);
+// const geometry = new THREE.TorusGeometry(25, 3, 15, 100);
+// const material = new THREE.MeshPhysicalMaterial({ color: '#ddffdd'  });
+// const torus = new THREE.Mesh(geometry, material);
 
-scene.add(torus);
+// scene.add(torus);
 
-// Lights
+// // Lights
 
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(5, 5, 5);
+// const pointLight = new THREE.PointLight(0xffffff);
+// pointLight.position.set(5, 5, 5);
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, ambientLight);
+// const ambientLight = new THREE.AmbientLight(0xffffff);
+// scene.add(pointLight, ambientLight);
 
-// Helpers
+// // Helpers
 
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
+// // const lightHelper = new THREE.PointLightHelper(pointLight)
+// // const gridHelper = new THREE.GridHelper(200, 50);
+// // scene.add(lightHelper, gridHelper)
 
-// const controls = new OrbitControls(camera, renderer.domElement);
+// // const controls = new OrbitControls(camera, renderer.domElement);
 
-function addStar() {
-    const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-    const material = new THREE.MeshStandardMaterial({ color: '#000000' });
-    const star = new THREE.Mesh(geometry, material);
+// function addStar() {
+//     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+//     const material = new THREE.MeshStandardMaterial({ color: '#000000' });
+//     const star = new THREE.Mesh(geometry, material);
 
-    const [x, y, z] = Array(3)
-        .fill()
-        .map(() => THREE.MathUtils.randFloatSpread(100));
+//     const [x, y, z] = Array(3)
+//         .fill()
+//         .map(() => THREE.MathUtils.randFloatSpread(100));
 
-    star.position.set(x, y, z);
-    scene.add(star);
-}
+//     star.position.set(x, y, z);
+//     scene.add(star);
+// }
 
-Array(200).fill().forEach(addStar);
+// Array(200).fill().forEach(addStar);
 
-// Background
+// // Background
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
-scene.background = spaceTexture;
+// const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+// scene.background = spaceTexture;
 
-// Avatar
+// // Avatar
 
-const jeffTexture = new THREE.TextureLoader().load('8c187c08-ae72-48d5-848a-3e658b15631a.jpg');
+// const jeffTexture = new THREE.TextureLoader().load('8c187c08-ae72-48d5-848a-3e658b15631a.jpg');
 
-const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
+// const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
 
-scene.add(jeff);
+// scene.add(jeff);
 
-// Moon
+// // Moon
 
-// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-// const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+// // const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+// // const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-// const moon = new THREE.Mesh(
-//   new THREE.SphereGeometry(3, 32, 32),
-//   new THREE.MeshStandardMaterial({
-//     map: moonTexture,
-//     normalMap: normalTexture,
-//   })
-// );
+// // const moon = new THREE.Mesh(
+// //   new THREE.SphereGeometry(3, 32, 32),
+// //   new THREE.MeshStandardMaterial({
+// //     map: moonTexture,
+// //     normalMap: normalTexture,
+// //   })
+// // );
 
-// scene.add(moon);
+// // scene.add(moon);
 
-// moon.position.z = 30;
-// moon.position.setX(-10);
+// // moon.position.z = 30;
+// // moon.position.setX(-10);
+
+
+// // const loader = new GLTFLoader();
+// // loader.load(
+// //   'adamHead/adamHead.gltf',
+// //   (gltf) => {
+// //     scene.add(gltf.scene);
+// //   },
+// //   (progress) => {
+// //     console.log(`Loading: ${progress.loaded / progress.total * 100}%`);
+// //   },
+// //   (error) => {
+// //     console.error(error);
+// //   }
+// // );
 
 
 // const loader = new GLTFLoader();
 // loader.load(
 //   'adamHead/adamHead.gltf',
 //   (gltf) => {
-//     scene.add(gltf.scene);
-//   },
-//   (progress) => {
-//     console.log(`Loading: ${progress.loaded / progress.total * 100}%`);
-//   },
-//   (error) => {
-//     console.error(error);
-//   }
-// );
-
-
-const loader = new GLTFLoader();
-loader.load(
-  'adamHead/adamHead.gltf',
-  (gltf) => {
-    const model = gltf.scene;
-    scene.add(model);
-
-    // Perform any necessary operations on the model
-    model.position.set(0, 0, 0);
-    model.scale.set(1, 1, 1);
-
-    // Animation loop
-    const animate = function () {
-      requestAnimationFrame(animate);
-
-      // Rotate the model
-      model.rotation.y += 0.01;
-      model.position.x = -25;
-      model.position.z = 30;
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-  },
-  (xhr) => {
-    console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-  },
-  (error) => {
-    console.error(error);
-  }
-);
-
-// const loader = new GLTFLoader();
-// let model;
-
-// loader.load(
-//   'adamHead.gltf',
-//   (gltf) => {
-//     model = gltf.scene;
+//     const model = gltf.scene;
 //     scene.add(model);
+
+//     // Perform any necessary operations on the model
+//     model.position.set(0, 0, 0);
+//     model.scale.set(1, 1, 1);
+
+//     // Animation loop
+//     const animate = function () {
+//       requestAnimationFrame(animate);
+
+//       // Rotate the model
+//       model.rotation.y += 0.01;
+//       model.position.x = -25;
+//       model.position.z = 30;
+
+//       renderer.render(scene, camera);
+//     };
+
+//     animate();
 //   },
-//   (progress) => {
-//     console.log(`Loading: ${progress.loaded / progress.total * 100}%`);
+//   (xhr) => {
+//     console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
 //   },
 //   (error) => {
 //     console.error(error);
 //   }
 // );
 
+// // const loader = new GLTFLoader();
+// // let model;
+
+// // loader.load(
+// //   'adamHead.gltf',
+// //   (gltf) => {
+// //     model = gltf.scene;
+// //     scene.add(model);
+// //   },
+// //   (progress) => {
+// //     console.log(`Loading: ${progress.loaded / progress.total * 100}%`);
+// //   },
+// //   (error) => {
+// //     console.error(error);
+// //   }
+// // );
 
 
-//  computer.position.set(0, 0, 0);
-//  computer.scale.set(1, 1, 1);
 
-jeff.position.z = -5;
-jeff.position.x = 2;
+// //  computer.position.set(0, 0, 0);
+// //  computer.scale.set(1, 1, 1);
+
+// jeff.position.z = -5;
+// jeff.position.x = 2;
 
 
-// function render() {
-//   renderer.render(scene, camera);
-//   requestAnimationFrame(render);
-// }
-// render()
+// // function render() {
+// //   renderer.render(scene, camera);
+// //   requestAnimationFrame(render);
+// // }
+// // render()
 
-// Scroll Animation
+// // Scroll Animation
 
-function moveCamera() {
-    const t = document.body.getBoundingClientRect().top;
-    // moon.rotation.x += 0.05;
-    // moon.rotation.y += 0.075;
-    // moon.rotation.z += 0.05;
+// function moveCamera() {
+//     const t = document.body.getBoundingClientRect().top;
+//     // moon.rotation.x += 0.05;
+//     // moon.rotation.y += 0.075;
+//     // moon.rotation.z += 0.05;
   
-    jeff.rotation.y += 0.01;
-    jeff.rotation.z += 0.01;
+//     jeff.rotation.y += 0.01;
+//     jeff.rotation.z += 0.01;
   
-    camera.position.z = t * -0.01;
-    camera.position.x = t * -0.0002;
-    camera.rotation.y = t * -0.0002;
-  }
+//     camera.position.z = t * -0.01;
+//     camera.position.x = t * -0.0002;
+//     camera.rotation.y = t * -0.0002;
+//   }
   
-  document.body.onscroll = moveCamera;
-  moveCamera();
+//   document.body.onscroll = moveCamera;
+//   moveCamera();
 
 
 
@@ -200,22 +200,52 @@ function moveCamera() {
 
 
   
-function animate() {
+// function animate() {
 
-    requestAnimationFrame(animate);
+//     requestAnimationFrame(animate);
     
-    torus.rotation.x += 0.01;
-    torus.rotation.y += 0.005;
-    torus.rotation.z += 0.01;
+//     torus.rotation.x += 0.01;
+//     torus.rotation.y += 0.005;
+//     torus.rotation.z += 0.01;
 
-    // Rotate the model
-    // model.rotation.y += 0.01;
+//     // Rotate the model
+//     // model.rotation.y += 0.01;
 
 
-    //controls.update();
+//     //controls.update();
 
-    renderer.render(scene, camera);
-}
+//     renderer.render(scene, camera);
+// }
 
-animate();
+// animate();
+
+
+
+
+ // TRing a background hdri
+
+
+// const scene = new THREE.Scene();
+
+
+// const camera = new THREE.PerspectiveCamera(
+// 60,
+// window.innerWidth / window.innerHeight,
+// 0.1,
+// 20000
+
+
+// );
+// camera.position.set(15, 10, 25);
+// camera.lookAt(0,0,0);
+
+
+// new RGBELoader() 
+// .load('sky4k.hdr' , function(texture){
+
+//   texture.mapping = THREE.EquirectangularReflectionMapping;
+//   scene.background = texture;
+//   scene.environment = texture;
+
+// } );
 
