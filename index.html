@@ -10,9 +10,9 @@
 
 
    
-    <canvas id="bg"></canvas>  
+    <!-- <canvas id="bg"></canvas>   -->
    
-
+<!-- 
     <main>
 
       <header>
@@ -83,47 +83,49 @@
       </blockquote>
 
 
-    </main>
+    </main> -->
+    <h1>Luis Isaac</h1>
+
+    <section class="hidden" > 
+    <h1>Luis Isaac</h1>
+    <p>🚀 Welcome to my website!</p>
+  </section>
+
+  <section class="hidden">
+    <h2>🌮 Work History</h2>
+
+        <h3>Expreience 1</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <h3>Expreience 2</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <h3>Expreience 3</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+  </section>
+
+<section class="hidden">
+  <h2>👩🏽‍🚀 Projects</h2>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+
+  <h2>🏆 Accomplishments</h2>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>    
+
+
+    <script defer type="module" src="/src/main.js"></script>
     
-    <script type="module" src="/src/main.js"></script>
-    
-   <div class="divnor"> 
-    <script type="module"> 
-    
-    
-      import * as THREE from 'three';
-      import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-      import { AmbientLight } from 'three';
-      import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-      import { RGBELoader } from '/RGBELoader';
-          
-      const scene = new THREE.Scene();
-      
-      
-      const camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      20000
-      
-      
-      );
-      camera.position.set(15, 10, 25);
-      camera.lookAt(0,0,0);
-      
-      
-      new RGBELoader() 
-      .load('sky4k.hdr' , function(texture){
-      
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.background = texture;
-        scene.environment = texture;
-      
-      } );
-      
-      
-          </script>
-</div>
+
 
 </body>
 

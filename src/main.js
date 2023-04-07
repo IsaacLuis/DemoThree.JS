@@ -219,33 +219,106 @@ import { RGBELoader } from '../RGBELoader';
 
 // animate();
 
+const observer = new IntersectionObserver((entries)=>{
+        entries.forEach((entry)=> {
+                if(entry.isIntersecting){
+                    entry.target.classList.add('show');
+                }
+                else {
+                    entry.target.classList.remove('show')
+                }
+        });
+})
 
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el)=>{
+            observer.observe(el)
+})
 
+let scene, camera, renderer;
 
- // TRing a background hdri
+function init() {
+  //create scene object
+  scene = new THREE.Scene();
+  
+  //setup camera with facing upward
+  camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 1, 1000);
+  camera.position.z = 1;
+  camera.rotation.x = Math.PI/2;
+  
+  //setup renderer
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
+  animate(); 
+}
 
-// const scene = new THREE.Scene();
+//rendering loop
+function animate() {
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
 
+init();
 
-// const camera = new THREE.PerspectiveCamera(
-// 60,
-// window.innerWidth / window.innerHeight,
-// 0.1,
-// 20000
+let starGeo = new THREE.BufferGeometry();
+let starVertices = [];
 
+for(let i = 0; i < 6000; i++) {
+  starVertices.push(Math.random() * 600 - 300);
+  starVertices.push(Math.random() * 600 - 300);
+  starVertices.push(Math.random() * 600 - 300);
+}
 
-// );
-// camera.position.set(15, 10, 25);
-// camera.lookAt(0,0,0);
+starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
 
+let sprite = new THREE.TextureLoader().load('moon.jpg');
+const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-// new RGBELoader() 
-// .load('sky4k.hdr' , function(texture){
+let starMaterial = new THREE.PointsMaterial({
+    
+  color: 0xaaaaaa,
+  size: 0.7,
+  map: sprite,
+  alphaTest: 0.5,
+});
 
-//   texture.mapping = THREE.EquirectangularReflectionMapping;
-//   scene.background = texture;
-//   scene.environment = texture;
+// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+// // const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-// } );
+// // const moon = new THREE.Mesh(
+// //   new THREE.SphereGeometry(3, 32, 32),
+// //   new THREE.MeshStandardMaterial({
+// //     map: moonTexture,
+// //     normalMap: normalTexture,
+// //   })
+// // );
 
+let stars = new THREE.Points(starGeo, starMaterial);
+scene.add(stars);
+
+stars.velocity = 0;
+stars.acceleration = 0.02;
+
+function animation() {
+  let starPositions = starGeo.attributes.position.array;
+  
+  for (let i = 0; i < starPositions.length; i += 3) {
+    stars.velocity += stars.acceleration;
+    starPositions[i + 1] -= stars.velocity;
+    
+    if (starPositions[i + 1] < -200) {
+      starPositions[i + 1] = 200;
+      stars.velocity = 0;
+    }
+  }
+
+  starGeo.attributes.position.needsUpdate = true;
+  
+  stars.rotation.y += 0.002;
+  
+  requestAnimationFrame(animation);
+}
+
+animation(); 
