@@ -284,16 +284,7 @@ let starMaterial = new THREE.PointsMaterial({
   alphaTest: 0.5,
 });
 
-// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-// // const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-// // const moon = new THREE.Mesh(
-// //   new THREE.SphereGeometry(3, 32, 32),
-// //   new THREE.MeshStandardMaterial({
-// //     map: moonTexture,
-// //     normalMap: normalTexture,
-// //   })
-// // );
 
 let stars = new THREE.Points(starGeo, starMaterial);
 scene.add(stars);
