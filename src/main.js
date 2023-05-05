@@ -281,7 +281,7 @@ const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 let starMaterial = new THREE.PointsMaterial({
     
   color: 0xaaaaaa,
-  size: 0.7,
+  size: 0.8,
   map: sprite,
   alphaTest: 0.5,
 });
@@ -314,4 +314,5 @@ function animation() {
   requestAnimationFrame(animation);
 }
 
-animation(); 
+animation();
+
